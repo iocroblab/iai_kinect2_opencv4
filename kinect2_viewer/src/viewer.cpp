@@ -141,12 +141,12 @@ private:
     if(useExact)
     {
       syncExact = new message_filters::Synchronizer<ExactSyncPolicy>(ExactSyncPolicy(queueSize), *subImageColor, *subImageDepth, *subCameraInfoColor, *subCameraInfoDepth);
-      syncExact->registerCallback(boost::bind(&Receiver::callback, this, _1, _2, _3, _4));
+      syncExact->registerCallback(std::bind(&Receiver::callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
     }
     else
     {
       syncApproximate = new message_filters::Synchronizer<ApproximateSyncPolicy>(ApproximateSyncPolicy(queueSize), *subImageColor, *subImageDepth, *subCameraInfoColor, *subCameraInfoDepth);
-      syncApproximate->registerCallback(boost::bind(&Receiver::callback, this, _1, _2, _3, _4));
+      syncApproximate->registerCallback(std::bind(&Receiver::callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
     }
 
     spinner.start();

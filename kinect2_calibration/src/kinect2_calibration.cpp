@@ -169,7 +169,7 @@ private:
     subImageDepth = new image_transport::SubscriberFilter(it, topicDepth, 4, hints);
 
     sync = new message_filters::Synchronizer<ColorIrDepthSyncPolicy>(ColorIrDepthSyncPolicy(4), *subImageColor, *subImageIr, *subImageDepth);
-    sync->registerCallback(boost::bind(&Recorder::callback, this, _1, _2, _3));
+    sync->registerCallback(std::bind(&Recorder::callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     spinner.start();
   }
