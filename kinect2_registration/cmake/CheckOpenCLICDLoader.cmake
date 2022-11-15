@@ -10,7 +10,7 @@ int main() {
   return 0;
 }" OpenCL_C_WORKS)
 CHECK_CXX_SOURCE_COMPILES("
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 int main() {
   cl::Context context;
   cl::Platform platform;
